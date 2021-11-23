@@ -44,7 +44,7 @@ public class Jump : MonoBehaviour {
         if (_controller.isGrounded) {
             coyoteTime = 0.15f;
             _wallGrab.enabled = true;
-            _movement._directionY = 0;
+            _movement._directionY = 0.0001f;
             _wallGrab.LastGrabbedObject = "RESET GROUND";
         } else {
             coyoteTime -= Time.deltaTime;

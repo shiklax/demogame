@@ -28,7 +28,7 @@ public class WallGrab : MonoBehaviour {
         WallGrabing();
     }
     void WallGrabing() {
-        Vector3 rayOrigin = transform.position;
+        Vector3 rayOrigin = transform.position + new Vector3(0, 1, 0);
         Vector3 rayDirection = new Vector3(0.8f, 0, 0);
         Debug.DrawRay(rayOrigin, rayDirection, Color.red);
         Debug.DrawRay(rayOrigin, -rayDirection, Color.red);
@@ -47,7 +47,6 @@ public class WallGrab : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
                 float TimeSinceLastTapLeft = Time.time - LeftArrowTapTime;
-                print(TimeSinceLastTapLeft);
                 LeftArrowTapTime = Time.time;
                 if (TimeSinceLastTapLeft <= DOUBLE_TAP_TIME) {
                     isRightWallGrabbed = false;
@@ -69,7 +68,6 @@ public class WallGrab : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 float TimeSinceLastTapRight = Time.time - RightArrowTapTime;
-                print(TimeSinceLastTapRight);
                 RightArrowTapTime = Time.time;
                 if (TimeSinceLastTapRight <= DOUBLE_TAP_TIME) {
                     isRightWallGrabbed = false;

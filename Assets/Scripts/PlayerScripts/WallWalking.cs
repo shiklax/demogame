@@ -47,18 +47,18 @@ public class WallWalking : MonoBehaviour {
     void WallWakingScript() {
         Vector3 rayDirection = new Vector3(0.8f, 0, 0);
         RaycastHit raycastHit;
-        Ray rayUpRight = new Ray(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), rayDirection);
-        Ray rayDownRight = new Ray(new Vector3(transform.position.x, transform.position.y - 0.7f, transform.position.z), rayDirection);
-        Ray rayUpLeft = new Ray(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), -rayDirection);
-        Ray rayDownLeft = new Ray(new Vector3(transform.position.x, transform.position.y - 0.7f, transform.position.z), -rayDirection);
+        Ray rayUpRight = new Ray(new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), rayDirection);
+        Ray rayDownRight = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), rayDirection);
+        Ray rayUpLeft = new Ray(new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), -rayDirection);
+        Ray rayDownLeft = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), -rayDirection);
         //up right
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), rayDirection, Color.cyan);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), rayDirection, Color.cyan);
         //down right
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.7f, transform.position.z), rayDirection, Color.green);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), rayDirection, Color.green);
         //up left
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), -rayDirection, Color.black);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), -rayDirection, Color.black);
         //down left
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.7f, transform.position.z), -rayDirection, Color.yellow);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), -rayDirection, Color.yellow);
         if ((Physics.Raycast(rayUpLeft, out raycastHit, rayDirection.x)) || (Physics.Raycast(rayDownLeft, out raycastHit, rayDirection.x))) {
             if (Physics.Raycast(rayUpLeft, out raycastHit, rayDirection.x) && (Physics.Raycast(rayDownLeft, out raycastHit, rayDirection.x))) {
                 movementControls();
