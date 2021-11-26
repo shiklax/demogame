@@ -50,7 +50,6 @@ public class Dash : MonoBehaviour {
                 break;
             if ((_characterController.collisionFlags & CollisionFlags.Above) != 0)
                 break;
-
         }
         _gravity.enabled = true;
         _movement.enabled = true;
