@@ -16,7 +16,7 @@ public class AnimationStateController : MonoBehaviour {
         _wallGrab = GetComponent<WallGrab>();
         _wallJump = GetComponent<WallJump>();
     }
-    void FixedUpdate() {
+    void Update() {
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow) && _characterController.isGrounded) {
             _animator.SetBool("isWalking", true);
             _animator.SetBool("isInAir", false);
@@ -26,17 +26,9 @@ public class AnimationStateController : MonoBehaviour {
             _animator.SetBool("isClimbingDown", false);
             if (Input.GetKey(KeyCode.RightArrow)) {
                 transform.rotation = Quaternion.Euler(0, 90, 0);
-                if (Input.GetKey(KeyCode.Space)) {
-                    _animator.SetBool("isWalking", false);
-
-                }
             }
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 transform.rotation = Quaternion.Euler(0, -90, 0);
-                if (Input.GetKey(KeyCode.Space)) {
-                    _animator.SetBool("isWalking", false);
-
-                }
             }
         }
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && _characterController.isGrounded) {
@@ -60,17 +52,32 @@ public class AnimationStateController : MonoBehaviour {
             _animator.SetBool("isDashing", true);
             _animator.SetBool("isInAir", false);
             transform.rotation = Quaternion.Euler(0, 90, 0);
+            if (_dash.isDashing == false) {
+                _animator.SetBool("isWalking", false);
+                _animator.SetBool("isDashing", false);
+                _animator.SetBool("isInAir", true);
+            }
         }
         if (_dash.isCoroutineRunning == true && Input.GetKey(KeyCode.LeftArrow)) {
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isDashing", true);
             _animator.SetBool("isInAir", false);
             transform.rotation = Quaternion.Euler(0, -90, 0);
+            if (_dash.isDashing == false) {
+                _animator.SetBool("isWalking", false);
+                _animator.SetBool("isDashing", false);
+                _animator.SetBool("isInAir", true);
+            }
         }
         if (_dash.isCoroutineRunning == true && Input.GetKey(KeyCode.UpArrow)) {
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isDashing", true);
             _animator.SetBool("isInAir", false);
+            if (_dash.isDashing == false) {
+                _animator.SetBool("isWalking", false);
+                _animator.SetBool("isDashing", false);
+                _animator.SetBool("isInAir", true);
+            }
         }
         if (_dash.isCoroutineRunning == false && !_characterController.isGrounded) {
             _animator.SetBool("isDashing", false);
@@ -102,6 +109,9 @@ public class AnimationStateController : MonoBehaviour {
             _animator.SetBool("isHanging", false);
         }
         if (_animator.GetBool("isInAir") == true) {
+            _animator.SetBool("isClimbingUp", false);
+            _animator.SetBool("isClimbingDown", false);
+            _animator.SetBool("isWalking", false);
             if (Input.GetKey(KeyCode.RightArrow))
                 transform.rotation = Quaternion.Euler(0, 90, 0);
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -109,4 +119,5 @@ public class AnimationStateController : MonoBehaviour {
         }
 
     }
+
 }

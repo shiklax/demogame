@@ -12,6 +12,7 @@ public class Dash : MonoBehaviour {
     [SerializeField]
     private float dashTime;
     public bool isCoroutineRunning = false;
+    public bool isDashing = false;
     void Start() {
         _gravity = GetComponent<Gravity>();
         _movement = GetComponent<Movement>();
@@ -41,6 +42,7 @@ public class Dash : MonoBehaviour {
     }
     IEnumerator Dashing(Vector3 destination, float dashTime, float dashSpeed) {
         while (dashTime > 0) {
+            isDashing = true;
             _gravity.enabled = false;
             _movement.enabled = false;
             _characterController.Move(new Vector3(destination.x * dashSpeed * Time.deltaTime, destination.y * dashSpeed * Time.deltaTime, destination.z * dashSpeed * Time.deltaTime));
@@ -51,6 +53,7 @@ public class Dash : MonoBehaviour {
             if ((_characterController.collisionFlags & CollisionFlags.Above) != 0)
                 break;
         }
+        isDashing = false;
         _gravity.enabled = true;
         _movement.enabled = true;
     }
