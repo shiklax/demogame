@@ -17,7 +17,7 @@ public class WallJump : MonoBehaviour {
     }
 
     void Update() {
-        if (_wallGrab.isLeftWallGrabbed && Input.GetButton("Jump") /*&& (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow))*/) {
+        if (_wallGrab.isLeftWallGrabbed && Input.GetButton("Jump")) {
             GetComponent<Dash>().isCoroutineRunning = false;
             _gravity.enabled = true;
             _movement.enabled = true;
@@ -26,7 +26,7 @@ public class WallJump : MonoBehaviour {
             this.enabled = false;
             _wallWalking.enabled = false;
         }
-        if (_wallGrab.isRightWallGrabbed && Input.GetButton("Jump") /*&& (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.UpArrow))*/) {
+        if (_wallGrab.isRightWallGrabbed && Input.GetButton("Jump")) {
             GetComponent<Dash>().isCoroutineRunning = false;
             _gravity.enabled = true;
             _movement.enabled = true;

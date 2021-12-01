@@ -17,6 +17,7 @@ public class AnimationStateController : MonoBehaviour {
         _wallJump = GetComponent<WallJump>();
     }
     void Update() {
+        print(_characterController.isGrounded);
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow) && _characterController.isGrounded) {
             _animator.SetBool("isWalking", true);
             _animator.SetBool("isInAir", false);

@@ -5,6 +5,7 @@ public class Jump : MonoBehaviour {
     CharacterController _controller;
     Gravity _gravity;
     WallGrab _wallGrab;
+    Dash _dash;
     [SerializeField]
     public float _jumpSpeed = 3.15f;
     public bool _canDoubleJump = false;
@@ -14,6 +15,7 @@ public class Jump : MonoBehaviour {
         _controller = GetComponent<CharacterController>();
         _gravity = GetComponent<Gravity>();
         _wallGrab = GetComponent<WallGrab>();
+        _dash = GetComponent<Dash>();
     }
     void Update() {
         IsOnGround();
@@ -44,6 +46,7 @@ public class Jump : MonoBehaviour {
         if (_controller.isGrounded) {
             coyoteTime = 0.15f;
             _wallGrab.enabled = true;
+            _dash.canDash = true;
             _movement._directionY = 0.0001f;
             _wallGrab.LastGrabbedObject = "RESET GROUND";
         } else {

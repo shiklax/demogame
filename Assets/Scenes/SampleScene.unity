@@ -903,6 +903,7 @@ MonoBehaviour:
   dashTime: 0
   isCoroutineRunning: 0
   isDashing: 0
+  canDash: 1
 --- !u!114 &1608798970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b96764abd372c794ca8bec3e275e6894, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b96764abd372c794ca8bec3e275e6894, type: 3}
       propertyPath: m_LocalPosition.z

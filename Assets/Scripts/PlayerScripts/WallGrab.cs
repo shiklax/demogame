@@ -38,6 +38,7 @@ public class WallGrab : MonoBehaviour {
         if (Physics.Raycast(rayRight, out RaycastHit raycastHit, rayDirection.x)) {
 
             if (Input.GetKey(KeyCode.RightArrow)) {
+                transform.rotation = Quaternion.Euler(0, 90, 0);
                 LastGrabbedObject = raycastHit.transform.name;
                 isRightWallGrabbed = true;
                 _gravity.enabled = false;
@@ -52,13 +53,14 @@ public class WallGrab : MonoBehaviour {
                     isRightWallGrabbed = false;
                     _gravity.enabled = true;
                     _movement.enabled = true;
-                    _wallWalking.enabled = true;
+                    _wallWalking.enabled = false;
                     _dash.enabled = true;
                 }
             }
         }
         if (Physics.Raycast(rayLeft, out raycastHit, rayDirection.x)) {
             if (Input.GetKey(KeyCode.LeftArrow)) {
+                transform.rotation = Quaternion.Euler(0, -90, 0);
                 LastGrabbedObject = raycastHit.transform.name;
                 isLeftWallGrabbed = true;
                 _gravity.enabled = false;
@@ -73,7 +75,7 @@ public class WallGrab : MonoBehaviour {
                     isRightWallGrabbed = false;
                     _gravity.enabled = true;
                     _movement.enabled = true;
-                    _wallWalking.enabled = true;
+                    _wallWalking.enabled = false;
                     _dash.enabled = true;
                 }
             }

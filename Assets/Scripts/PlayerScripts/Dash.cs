@@ -13,6 +13,7 @@ public class Dash : MonoBehaviour {
     private float dashTime;
     public bool isCoroutineRunning = false;
     public bool isDashing = false;
+    public bool canDash = true;
     void Start() {
         _gravity = GetComponent<Gravity>();
         _movement = GetComponent<Movement>();
@@ -25,18 +26,21 @@ public class Dash : MonoBehaviour {
     }
     void DashingHandler() {
         //dash right
-        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.RightArrow) && !isCoroutineRunning && !_characterController.isGrounded) {
+        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.RightArrow) && !isCoroutineRunning && !_characterController.isGrounded && canDash) {
             isCoroutineRunning = true;
+            canDash = false;
             StartCoroutine(Dashing(new Vector3(0.1f, 0, 0), dashTime, dashSpeed));
         }
         //dash right
-        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftArrow) && !isCoroutineRunning && !_characterController.isGrounded) {
+        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftArrow) && !isCoroutineRunning && !_characterController.isGrounded && canDash) {
             isCoroutineRunning = true;
+            canDash = false;
             StartCoroutine(Dashing(new Vector3(-0.1f, 0, 0), dashTime, dashSpeed));
         }
         //dash up
-        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow) && !isCoroutineRunning && !_characterController.isGrounded) {
+        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.UpArrow) && !isCoroutineRunning && !_characterController.isGrounded && canDash) {
             isCoroutineRunning = true;
+            canDash = false;
             StartCoroutine(Dashing(new Vector3(0, 0.1f, 0), dashTime, dashSpeed));
         }
     }
