@@ -3,22 +3,21 @@ using UnityEngine;
 public class AnimationStateController : MonoBehaviour {
 
     Animator _animator;
-    CharacterController _characterController;
+    CharacterController _controller;
     Dash _dash;
     WallWalking _wallWalking;
     WallGrab _wallGrab;
     WallJump _wallJump;
     void Start() {
         _animator = GetComponent<Animator>();
-        _characterController = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
         _dash = GetComponent<Dash>();
         _wallWalking = GetComponent<WallWalking>();
         _wallGrab = GetComponent<WallGrab>();
         _wallJump = GetComponent<WallJump>();
     }
     void Update() {
-        print(_characterController.isGrounded);
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow) && _characterController.isGrounded) {
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow) && _controller.isGrounded) {
             _animator.SetBool("isWalking", true);
             _animator.SetBool("isInAir", false);
             _animator.SetBool("isDashing", false);
@@ -32,7 +31,7 @@ public class AnimationStateController : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(0, -90, 0);
             }
         }
-        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && _characterController.isGrounded) {
+        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && _controller.isGrounded) {
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isHanging", false);
             _animator.SetBool("isInAir", false);
@@ -40,7 +39,7 @@ public class AnimationStateController : MonoBehaviour {
             _animator.SetBool("isClimbingUp", false);
             _animator.SetBool("isClimbingDown", false);
         }
-        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow) && _characterController.isGrounded) {
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow) && _controller.isGrounded) {
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isInAir", false);
             _animator.SetBool("isDashing", false);
@@ -80,7 +79,7 @@ public class AnimationStateController : MonoBehaviour {
                 _animator.SetBool("isInAir", true);
             }
         }
-        if (_dash.isCoroutineRunning == false && !_characterController.isGrounded) {
+        if (_dash.isCoroutineRunning == false && !_controller.isGrounded) {
             _animator.SetBool("isDashing", false);
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isDashing", false);

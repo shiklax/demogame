@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WallGrab : MonoBehaviour {
     Movement _movement;
-    CharacterController _characterController;
+    CharacterController _controller;
     Gravity _gravity;
     Jump _jump;
     WallWalking _wallWalking;
@@ -16,7 +16,7 @@ public class WallGrab : MonoBehaviour {
 
     void Start() {
         _movement = GetComponent<Movement>();
-        _characterController = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
         _gravity = GetComponent<Gravity>();
         _jump = GetComponent<Jump>();
         _wallWalking = GetComponent<WallWalking>();
@@ -28,14 +28,14 @@ public class WallGrab : MonoBehaviour {
         WallGrabing();
     }
     void WallGrabing() {
-        Vector3 rayOrigin = transform.position + new Vector3(0, 1, 0);
-        Vector3 rayDirection = new Vector3(0.8f, 0, 0);
+        Vector3 rayOrigin = transform.position + new Vector3(0, 1f, 0);
+        Vector3 rayDirection = new Vector3(0.5f, 0, 0);
         Debug.DrawRay(rayOrigin, rayDirection, Color.red);
         Debug.DrawRay(rayOrigin, -rayDirection, Color.red);
 
         Ray rayRight = new Ray(rayOrigin, rayDirection);
         Ray rayLeft = new Ray(rayOrigin, -rayDirection);
-        if (Physics.Raycast(rayRight, out RaycastHit raycastHit, rayDirection.x)) {
+        if (Physics.Raycast(rayRight, out RaycastHit raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab") {
 
             if (Input.GetKey(KeyCode.RightArrow)) {
                 transform.rotation = Quaternion.Euler(0, 90, 0);
@@ -58,7 +58,7 @@ public class WallGrab : MonoBehaviour {
                 }
             }
         }
-        if (Physics.Raycast(rayLeft, out raycastHit, rayDirection.x)) {
+        if (Physics.Raycast(rayLeft, out raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab") {
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 transform.rotation = Quaternion.Euler(0, -90, 0);
                 LastGrabbedObject = raycastHit.transform.name;
@@ -72,7 +72,7 @@ public class WallGrab : MonoBehaviour {
                 float TimeSinceLastTapRight = Time.time - RightArrowTapTime;
                 RightArrowTapTime = Time.time;
                 if (TimeSinceLastTapRight <= DOUBLE_TAP_TIME) {
-                    isRightWallGrabbed = false;
+                    isLeftWallGrabbed = false;
                     _gravity.enabled = true;
                     _movement.enabled = true;
                     _wallWalking.enabled = false;

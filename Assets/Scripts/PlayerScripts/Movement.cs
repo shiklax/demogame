@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour {
         //Animation bug fix
     }
     void Update() {
+
         Movements();
     }
     void Movements() {
@@ -26,6 +27,7 @@ public class Movement : MonoBehaviour {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         Vector3 direction = new Vector3(horizontalInput, 0f, 0f);
         direction.y = _directionY;
-        _controller.Move(direction * Time.deltaTime * _moveSpeed);
+        Vector3 movement = direction * Time.deltaTime * _moveSpeed;
+        _controller.Move(movement);
     }
 }

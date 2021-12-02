@@ -10,6 +10,8 @@ public class Jump : MonoBehaviour {
     public float _jumpSpeed = 3.15f;
     public bool _canDoubleJump = false;
     public float coyoteTime = 0.15f;
+    public bool isGrounded;
+
     void Start() {
         _movement = GetComponent<Movement>();
         _controller = GetComponent<CharacterController>();
