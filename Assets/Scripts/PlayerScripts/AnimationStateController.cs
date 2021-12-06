@@ -117,6 +117,12 @@ public class AnimationStateController : MonoBehaviour {
             if (Input.GetKey(KeyCode.LeftArrow))
                 transform.rotation = Quaternion.Euler(0, -90, 0);
         }
+        if (_dash.isDashing) {
+
+            _animator.SetBool("isInAir", false);
+            _animator.SetBool("isDashing", true);
+
+        }
 
     }
 

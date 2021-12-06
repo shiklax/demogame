@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 28ccf3c954c94b048845e1a47491f857
+guid: 2b5085f7e86f35f4e9acc1ea07ad1499
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 6997882522552206460
+    second: Circle|CircleAction
   externalObjects: {}
   materials:
     materialImportMode: 2
