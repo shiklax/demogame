@@ -35,7 +35,7 @@ public class WallGrab : MonoBehaviour {
 
         Ray rayRight = new Ray(rayOrigin, rayDirection);
         Ray rayLeft = new Ray(rayOrigin, -rayDirection);
-        if (Physics.Raycast(rayRight, out RaycastHit raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab") {
+        if (Physics.Raycast(rayRight, out RaycastHit raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab" && LastGrabbedObject != raycastHit.transform.name) {
 
             if (Input.GetKey(KeyCode.RightArrow)) {
                 transform.rotation = Quaternion.Euler(0, 90, 0);
@@ -58,7 +58,7 @@ public class WallGrab : MonoBehaviour {
                 }
             }
         }
-        if (Physics.Raycast(rayLeft, out raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab") {
+        if (Physics.Raycast(rayLeft, out raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab" && LastGrabbedObject != raycastHit.transform.name) {
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 transform.rotation = Quaternion.Euler(0, -90, 0);
                 LastGrabbedObject = raycastHit.transform.name;
