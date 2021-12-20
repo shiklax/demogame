@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour {
@@ -19,6 +20,14 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
     public void RespawnPlayer() {
+        _player.SetActive(false);
+        StartCoroutine(RespawnPlayerCoroutine(2));
+    }
+
+    IEnumerator RespawnPlayerCoroutine(float time) {
+        yield return new WaitForSeconds(time);
+
         _player.transform.position = _gm.lastCheckPointPos;
+        _player.SetActive(true);
     }
 }

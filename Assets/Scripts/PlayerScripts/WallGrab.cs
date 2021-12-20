@@ -12,7 +12,7 @@ public class WallGrab : MonoBehaviour {
     public string LastGrabbedObject;
     private float LeftArrowTapTime;
     private float RightArrowTapTime;
-    private const float DOUBLE_TAP_TIME = .2f;
+    private const float DOUBLE_TAP_TIME = 0.2f;
 
     void Start() {
         _movement = GetComponent<Movement>();
@@ -71,6 +71,7 @@ public class WallGrab : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 float TimeSinceLastTapRight = Time.time - RightArrowTapTime;
                 RightArrowTapTime = Time.time;
+                print("tap");
                 if (TimeSinceLastTapRight <= DOUBLE_TAP_TIME) {
                     isLeftWallGrabbed = false;
                     _gravity.enabled = true;
