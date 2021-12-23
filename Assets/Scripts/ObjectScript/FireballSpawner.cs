@@ -10,7 +10,7 @@ public class FireballSpawner : MonoBehaviour {
         _animation = GetComponent<Animation>();
     }
     void SpawnFireball() {
-        GameObject fireball = Instantiate(projectile, transform) as GameObject;
+        GameObject fireball = Instantiate(projectile, this.gameObject.transform.GetChild(0)) as GameObject;
         Rigidbody rb = fireball.GetComponent<Rigidbody>();
         rb.velocity = transform.up * projectileSpeed;
     }

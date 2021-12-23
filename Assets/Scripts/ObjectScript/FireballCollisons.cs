@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FireballCollisons : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Enemy")
+        if (other.tag != "IgnoreCollison")
             Destroy(this.gameObject);
     }
 }

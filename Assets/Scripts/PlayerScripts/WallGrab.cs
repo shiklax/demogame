@@ -21,9 +21,7 @@ public class WallGrab : MonoBehaviour {
         _jump = GetComponent<Jump>();
         _wallWalking = GetComponent<WallWalking>();
         _dash = GetComponent<Dash>();
-
     }
-
     void Update() {
         WallGrabing();
     }
@@ -36,7 +34,6 @@ public class WallGrab : MonoBehaviour {
         Ray rayRight = new Ray(rayOrigin, rayDirection);
         Ray rayLeft = new Ray(rayOrigin, -rayDirection);
         if (Physics.Raycast(rayRight, out RaycastHit raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab" && LastGrabbedObject != raycastHit.transform.name) {
-
             if (Input.GetKey(KeyCode.RightArrow)) {
                 transform.rotation = Quaternion.Euler(0, 90, 0);
                 LastGrabbedObject = raycastHit.transform.name;
@@ -45,7 +42,7 @@ public class WallGrab : MonoBehaviour {
                 _movement.enabled = false;
                 _wallWalking.enabled = true;
                 _dash.enabled = false;
-            }
+            }/*
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
                 float TimeSinceLastTapLeft = Time.time - LeftArrowTapTime;
                 LeftArrowTapTime = Time.time;
@@ -57,6 +54,7 @@ public class WallGrab : MonoBehaviour {
                     _dash.enabled = true;
                 }
             }
+            */
         }
         if (Physics.Raycast(rayLeft, out raycastHit, rayDirection.x) && raycastHit.transform.tag == "canGrab" && LastGrabbedObject != raycastHit.transform.name) {
             if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -67,11 +65,10 @@ public class WallGrab : MonoBehaviour {
                 _movement.enabled = false;
                 _wallWalking.enabled = true;
                 _dash.enabled = false;
-            }
+            }/*
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 float TimeSinceLastTapRight = Time.time - RightArrowTapTime;
                 RightArrowTapTime = Time.time;
-                print("tap");
                 if (TimeSinceLastTapRight <= DOUBLE_TAP_TIME) {
                     isLeftWallGrabbed = false;
                     _gravity.enabled = true;
@@ -79,7 +76,7 @@ public class WallGrab : MonoBehaviour {
                     _wallWalking.enabled = false;
                     _dash.enabled = true;
                 }
-            }
+            }*/
         }
     }
 }

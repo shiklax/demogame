@@ -25,6 +25,8 @@ public class WallWalking : MonoBehaviour {
         if (wallWalkingTime > 0) {
             WallWakingScript();
             wallWalkingTime -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.X))
+                wallWalkingTime = 0;
         } else {
             this.enabled = false;
             _wallGrab.enabled = false;
