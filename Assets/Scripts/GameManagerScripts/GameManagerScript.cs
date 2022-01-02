@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class GameManagerScript : MonoBehaviour {
     private static GameManagerScript instance;
     GameObject _player;
@@ -9,6 +11,7 @@ public class GameManagerScript : MonoBehaviour {
     public bool _playerRespawn;
     public Vector3 lastCheckPointPos;
     public int hitpoints;
+    public int lifePoints;
 
     private void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -16,24 +19,25 @@ public class GameManagerScript : MonoBehaviour {
         _gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManagerScript>();
     }
     private void Awake() {
+        /*
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(instance);
         } else {
             Destroy(gameObject);
         }
+        */
     }
     private void Update() {
-        print(hitpoints);
-
-
-
-
         HitpointsChecker();
+        if (lifePoints == 0) {
+            ReloadScene();
+        }
     }
 
 
     public void RespawnPlayer() {
+        lifePoints--;
         _playerHited = false;
         _playerRespawn = true;
         _player.SetActive(false);
@@ -45,6 +49,14 @@ public class GameManagerScript : MonoBehaviour {
             RespawnPlayer();
         }
     }
+
+    public void ReloadScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        lifePoints = 2;
+    }
+
+
+
     IEnumerator RespawnPlayerCoroutine(float time) {
         yield return new WaitForSeconds(time);
 

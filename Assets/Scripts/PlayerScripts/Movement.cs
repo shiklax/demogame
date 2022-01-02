@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour {
     }
     void Update() {
         Movements();
+        Physics.IgnoreLayerCollision(0, 7);
     }
     void Movements() {
         if (!_attachPlayer.isOnMovingPlatform) {
