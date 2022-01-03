@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
-    private static GameManagerScript instance;
     GameObject _player;
-    GameObject _model;
+    GameObject _canvas;
     GameManagerScript _gm;
     public bool _playerHited;
     public bool _playerRespawn;
@@ -15,8 +14,8 @@ public class GameManagerScript : MonoBehaviour {
 
     private void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _model = GameObject.Find("Model");
         _gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManagerScript>();
+        _canvas = GameObject.Find("Canvas");
     }
     private void Awake() {
         /*
@@ -37,11 +36,16 @@ public class GameManagerScript : MonoBehaviour {
 
 
     public void RespawnPlayer() {
+        _player.GetComponent<Dash>().isDashing = false;
+        if (!_canvas.GetComponent<GameUiTextScript>().tabtoggle)
+            _canvas.GetComponent<GameUiTextScript>().StartCoroutine("ShowHideLife");
         lifePoints--;
         _playerHited = false;
         _playerRespawn = true;
         _player.SetActive(false);
         StartCoroutine(RespawnPlayerCoroutine(2));
+        _player.GetComponent<Movement>().enabled = true;
+        _player.GetComponent<Gravity>().enabled = true;
         hitpoints = 2;
     }
     public void HitpointsChecker() {
@@ -63,5 +67,6 @@ public class GameManagerScript : MonoBehaviour {
         _player.transform.position = _gm.lastCheckPointPos;
         _player.SetActive(true);
         _playerRespawn = false;
+
     }
 }
