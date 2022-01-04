@@ -5,16 +5,19 @@ using UnityEngine;
 public class GameUiTextScript : MonoBehaviour {
     GameManagerScript _gameManagerScript;
     TextMeshProUGUI lifePointstxt;
+    TextMeshProUGUI coinPointstxt;
     GameObject _LifeObjectHolder;
     public bool tabtoggle = false;
     void Start() {
         _gameManagerScript = GameObject.Find("GameManagerHelper").GetComponent<GameManagerScript>();
-        _LifeObjectHolder = GameObject.Find("Canvas/LifeObjectHolder");
-        lifePointstxt = GameObject.Find("Canvas/LifeObjectHolder/LifeCOUNT").GetComponent<TextMeshProUGUI>();
+        _LifeObjectHolder = GameObject.Find("Canvas/UpUiWrapper");
+        lifePointstxt = GameObject.Find("Canvas/UpUiWrapper/LifeCOUNT").GetComponent<TextMeshProUGUI>();
+        coinPointstxt = GameObject.Find("Canvas/UpUiWrapper/CoinCOUNT").GetComponent<TextMeshProUGUI>();
     }
 
     private void Update() {
         lifePointstxt.text = _gameManagerScript.lifePoints.ToString();
+        coinPointstxt.text = _gameManagerScript.coinPoints.ToString();
         TabToggle();
     }
 

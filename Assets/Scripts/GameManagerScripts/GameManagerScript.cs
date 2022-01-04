@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour {
     public Vector3 lastCheckPointPos;
     public int hitpoints;
     public int lifePoints;
+    public int coinPoints;
 
     private void Start() {
         _player = GameObject.FindGameObjectWithTag("Player");

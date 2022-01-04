@@ -4,6 +4,8 @@ using UnityEngine;
 public class CheckPointTextScript : MonoBehaviour {
     [SerializeField] float tweenTime;
     [SerializeField] float tweenDelay;
+    [SerializeField] float waitTillDelete;
+    [SerializeField] float deleteTime;
     [SerializeField] LeanTweenType TweenType;
 
 
@@ -29,11 +31,12 @@ public class CheckPointTextScript : MonoBehaviour {
                 yield return new WaitForSeconds(tweenDelay);
             }
         }
+        yield return new WaitForSeconds(waitTillDelete);
         if (counter == 20) {
-            foreach (Transform child in transform) {
-                child.gameObject.SetActive(false);
-                yield return new WaitForSeconds(tweenDelay);
 
+            foreach (Transform child in transform) {
+                yield return new WaitForSeconds(deleteTime);
+                child.gameObject.SetActive(false);
             }
             this.gameObject.SetActive(false);
         }
