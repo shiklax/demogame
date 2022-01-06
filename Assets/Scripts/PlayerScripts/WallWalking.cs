@@ -11,7 +11,7 @@ public class WallWalking : MonoBehaviour {
     [SerializeField]
     private float wallWalkingSpeed = 10f;
     [SerializeField]
-    private float wallWalkingTime = 2f;
+    public float wallWalkingTime = 2f;
     void Start() {
         _wallGrab = GetComponent<WallGrab>();
         _controller = GetComponent<CharacterController>();

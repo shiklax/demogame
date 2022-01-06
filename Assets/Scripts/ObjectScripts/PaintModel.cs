@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -27,10 +26,12 @@ public class PaintModel : MonoBehaviour {
         if (_gm._playerHited && !_gm._playerRespawn && !flashingCoroutineRunning) {
             flashingCoroutineRunning = true;
             StartFlash();
+
         }
     }
 
     public void StartFlash() => StartCoroutine(EFlash());
+
     private IEnumerator EFlash() {
         float startTime = Time.time;
         bool b = false;

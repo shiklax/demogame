@@ -8,6 +8,13 @@ public class GameManagerScript : MonoBehaviour {
     GameManagerScript _gm;
     public bool _playerHited;
     public bool _playerRespawn;
+
+    public bool pinkGemTaken = false;
+    public bool yellowGemTaken = false;
+    public bool greenGemTaken = false;
+    public bool blueGemTaken = false;
+
+
     public Vector3 lastCheckPointPos;
     public int hitpoints;
     public int lifePoints;
@@ -17,6 +24,8 @@ public class GameManagerScript : MonoBehaviour {
         _player = GameObject.FindGameObjectWithTag("Player");
         _gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManagerScript>();
         _canvas = GameObject.Find("Canvas");
+        //fixing weird graphic bug
+        StartCoroutine("HidePlayer");
     }
     private void Awake() {
         /*
@@ -61,6 +70,16 @@ public class GameManagerScript : MonoBehaviour {
     }
 
 
+    IEnumerator HidePlayer() {
+        _player.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+        _player.GetComponent<Movement>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        _player.GetComponent<Movement>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        _player.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
+    }
+
+
 
     IEnumerator RespawnPlayerCoroutine(float time) {
         yield return new WaitForSeconds(time);
@@ -70,4 +89,6 @@ public class GameManagerScript : MonoBehaviour {
         _playerRespawn = false;
 
     }
+
+
 }

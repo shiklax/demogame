@@ -6,6 +6,7 @@ public class Dash : MonoBehaviour {
 
     Gravity _gravity;
     Movement _movement;
+    WallGrab _wallGrab;
     CharacterController _controller;
     [SerializeField]
     private float dashSpeed;
@@ -18,6 +19,7 @@ public class Dash : MonoBehaviour {
         _gravity = GetComponent<Gravity>();
         _movement = GetComponent<Movement>();
         _controller = GetComponent<CharacterController>();
+        _wallGrab = GetComponent<WallGrab>();
         dashTime = 0.4f;
         dashSpeed = 150f;
     }
@@ -51,6 +53,7 @@ public class Dash : MonoBehaviour {
             isDashing = true;
             _gravity.enabled = false;
             _movement.enabled = false;
+            _wallGrab.enabled = false;
             _controller.Move(new Vector3(destination.x * dashSpeed * Time.deltaTime, destination.y * dashSpeed * Time.deltaTime, destination.z * dashSpeed * Time.deltaTime));
             yield return new WaitForFixedUpdate();
             dashTime -= Time.deltaTime;/*
@@ -63,5 +66,6 @@ public class Dash : MonoBehaviour {
         isDashing = false;
         _gravity.enabled = true;
         _movement.enabled = true;
+        _wallGrab.enabled = true;
     }
 }
