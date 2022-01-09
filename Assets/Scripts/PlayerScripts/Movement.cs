@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour {
             if (_directionY < -_fallSpeed)
                 _directionY = -_fallSpeed;
         }
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         Vector3 direction = new Vector3(horizontalInput, 0f, 0f);
         direction.y = _directionY;
