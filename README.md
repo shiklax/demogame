@@ -9,3 +9,4 @@ their logic and additional objects to be collected by the game hero.
 * Plastic Scm
 # Additional info
 * [Link](https://github.com/shiklax/demogame/blob/master/Assets/PracaInzynierskaRadosławMatusiak.pdf) to an engineering thesis written in Polish.
+* [Link](https://www.youtube.com/watch?v=pk9AHEpgv7U) to gameplay video.
